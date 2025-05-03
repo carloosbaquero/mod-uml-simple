@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Uml xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://lsi.us.es/mis/uml" xsi:schemaLocation="http://lsi.us.es/mis/uml uml.ecore">
+  <entities name="Customer">
+    <attributes name="email"/>
+  </entities>
+  <entities name="Product">
+    <attributes name="name"/>
+    <attributes name="price" type="Double"/>
+  </entities>
+  <entities name="Order">
+    <attributes name="deliverDate" type="Date"/>
+  </entities>
+  <entities name="Entity4">
+    <attributes name="Attr1"/>
+    <attributes name="Attr2"/>
+    <attributes name="Attr3"/>
+    <attributes name="Attr4"/>
+  </entities>
+  <entities name="Entity5"/>
+  <relations role="orders" min="0" max="100" target="//@entities.2" source="//@entities.0"/>
+  <relations role="products" min="1" max="100" target="//@entities.1" source="//@entities.2"/>
+  <relations role="Relationship3" target="//@entities.4" source="//@entities.3"/>
+</uml:Uml>

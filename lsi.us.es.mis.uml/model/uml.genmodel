@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/lsi.us.es.mis.uml/src-gen" creationIcons="false"
+    editDirectory="/lsi.us.es.mis.uml.edit/src-gen" editorDirectory="/lsi.us.es.mis.uml.editor/src-gen"
+    modelPluginID="lsi.us.es.mis.uml" modelName="Uml" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>uml.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Uml" basePackage="lsi.us.es.mis" disposableProviderFactory="true"
+      ecorePackage="uml.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="uml.ecore#//PrimitiveType">
+      <genEnumLiterals ecoreEnumLiteral="uml.ecore#//PrimitiveType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="uml.ecore#//PrimitiveType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="uml.ecore#//PrimitiveType/Date"/>
+      <genEnumLiterals ecoreEnumLiteral="uml.ecore#//PrimitiveType/Double"/>
+      <genEnumLiterals ecoreEnumLiteral="uml.ecore#//PrimitiveType/Boolean"/>
+    </genEnums>
+    <genClasses ecoreClass="uml.ecore#//Uml">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//Uml/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//Uml/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Entity/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//Entity/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Attribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//Relationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Relationship/role"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Relationship/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//Relationship/max"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference uml.ecore#//Relationship/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference uml.ecore#//Relationship/source"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
