@@ -10,14 +10,28 @@
   <entities name="Order">
     <attributes name="deliverDate" type="Date"/>
   </entities>
-  <entities name="Entity4">
+  <entities name="Entity5">
     <attributes name="Attr1"/>
     <attributes name="Attr2"/>
     <attributes name="Attr3"/>
     <attributes name="Attr4"/>
   </entities>
-  <entities name="Entity5"/>
-  <relations role="orders" min="0" max="100" target="//@entities.2" source="//@entities.0"/>
+  <entities name="Entity6"/>
+  <entities name="Entity7">
+    <attributes name="Attr1"/>
+  </entities>
+  <entities name="Entity8">
+    <attributes name="Attr1"/>
+  </entities>
+  <relations role="orders" min="0" max="100" source="//@entities.0"/>
   <relations role="products" min="1" max="100" target="//@entities.1" source="//@entities.2"/>
-  <relations role="Relationship3" target="//@entities.4" source="//@entities.3"/>
+  <relations role="Relationship" target="//@entities.3"/>
+  <relations source="//@entities.5"/>
+  <relations role="orders" target="//@entities.2" source="//@entities.0"/>
+  <relations source="//@entities.6"/>
+  <relations role="relation" target="//@entities.5" source="//@entities.4"/>
+  <relations role="" source="//@entities.5"/>
+  <relations role="Relationship" target="//@entities.6" source="//@entities.5"/>
+  <relations role="relates" target="//@entities.4" source="//@entities.6"/>
+  <relations role="relates" target="//@entities.5" source="//@entities.3"/>
 </uml:Uml>

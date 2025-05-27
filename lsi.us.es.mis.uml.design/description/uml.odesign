@@ -4,54 +4,31 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="umls" domainClass="uml::Uml" enablePopupBars="true">
       <metamodel href="../../lsi.us.es.mis.uml/model/uml.ecore#/"/>
       <defaultLayer name="Default">
-        <nodeMappings name="NodeRelationship" semanticCandidatesExpression="feature:relations" domainClass="uml::Relationship">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="feature:role" sizeComputationExpression="12" resizeKind="NSEW" workspacePath="/lsi.us.es.mis.uml.design/icons/Arrow-cut.png">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          </style>
-        </nodeMappings>
-        <edgeMappings name="relTarget" sourceMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@nodeMappings[name='NodeRelationship']" targetMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@containerMappings[name='ContainerEntity']" targetFinderExpression="feature:target">
+        <edgeMappings name="EdgeRelationship" semanticCandidatesExpression="feature:relations" sourceMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@containerMappings[name='ContainerEntity']" targetMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@containerMappings[name='ContainerEntity']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="uml::Relationship" useDomainElement="true">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription showIcon="false" labelExpression="target">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="relSource" sourceMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@nodeMappings[name='NodeRelationship']" targetMapping="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@containerMappings[name='ContainerEntity']" targetFinderExpression="feature:source">
-          <style sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription showIcon="false" labelExpression="source">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="feature:role">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
         <containerMappings name="ContainerEntity" semanticCandidatesExpression="feature:entities" domainClass="uml::Entity">
           <subNodeMappings name="NodeAttribute" semanticCandidatesExpression="feature:attributes" domainClass="uml::Attribute">
-            <style xsi:type="style:WorkspaceImageDescription" labelSize="6" labelAlignment="RIGHT" workspacePath="/lsi.us.es.mis.uml.design/icons/attribute.svg">
+            <style xsi:type="style:WorkspaceImageDescription" labelAlignment="RIGHT" sizeComputationExpression="-1" workspacePath="/lsi.us.es.mis.uml.design/icons/attribute.svg">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </containerMappings>
         <toolSections name="Tool">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="createRelationship" nodeMappings="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@nodeMappings[name='NodeRelationship']" iconPath="/lsi.us.es.mis.uml.design/icons/Arrow-cut-small.png">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="uml::Relationship" referenceName="relations">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="role" valueExpression="aql:'Relationship'+container.relations->size()"/>
-                </subModelOperations>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
           <ownedTools xsi:type="tool:ContainerCreationDescription" name="createEntity" containerMappings="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@containerMappings[name='ContainerEntity']" iconPath="/lsi.us.es.mis.uml.design/icons/entity.png">
             <variable name="container"/>
             <viewVariable name="containerView"/>
@@ -74,25 +51,18 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="setTarget" edgeMappings="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@edgeMappings[name='relTarget']" iconPath="/lsi.us.es.mis.uml.design/icons/setRel.png">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="setRelationship" edgeMappings="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@edgeMappings[name='EdgeRelationship']" iconPath="/lsi.us.es.mis.uml.design/icons/setRel.png">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="setSource" edgeMappings="//@ownedViewpoints[name='components']/@ownedRepresentations[name='umls']/@defaultLayer/@edgeMappings[name='relSource']" iconPath="/lsi.us.es.mis.uml.design/icons/setRel.png">
-            <sourceVariable name="source"/>
-            <targetVariable name="target"/>
-            <sourceViewVariable name="sourceView"/>
-            <targetViewVariable name="targetView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:target"/>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer()">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="uml::Relationship" referenceName="relations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="role" valueExpression="relates"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
