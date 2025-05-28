@@ -1,0 +1,35 @@
+grammar lsi.us.es.mis.xtext.MyUmlDsl with org.eclipse.xtext.common.Terminals
+
+generate myUmlDsl "http://www.us.lsi/es/mis/xtext/MyUmlDsl"
+
+Uml:
+	'UML'
+	'{'
+		{Uml}
+		entities+=Entity*
+    	relationships+=Relationship*
+	'}'
+;
+
+Entity:
+    'Entity' name=ID 
+    '{'
+        attributes+=Attribute*
+    '}'
+;
+
+Attribute:
+    'Attr' name=ID
+;
+
+Relationship:
+	source=[Entity] '->' target=[Entity] ':' role=STRING 
+    cardinality=Cardinality;
+    
+Cardinality:
+    '[' min=INT '..' max=MaxValue ']'
+;
+
+MaxValue:
+    INT | '*'
+;
