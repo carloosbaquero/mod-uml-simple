@@ -23,6 +23,7 @@ import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
@@ -85,18 +86,11 @@ ruleUml returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getUmlAccess().getLeftCurlyBracketKeyword_1());
 		}
 		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getUmlAccess().getUmlAction_2(),
-					$current);
-			}
-		)
-		(
 			(
 				{
-					newCompositeNode(grammarAccess.getUmlAccess().getEntitiesEntityParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getUmlAccess().getEntitiesEntityParserRuleCall_2_0());
 				}
-				lv_entities_3_0=ruleEntity
+				lv_entities_2_0=ruleEntity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getUmlRule());
@@ -104,7 +98,7 @@ ruleUml returns [EObject current=null]
 					add(
 						$current,
 						"entities",
-						lv_entities_3_0,
+						lv_entities_2_0,
 						"lsi.us.es.mis.xtext.MyUmlDsl.Entity");
 					afterParserOrEnumRuleCall();
 				}
@@ -113,9 +107,9 @@ ruleUml returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getUmlAccess().getRelationshipsRelationshipParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getUmlAccess().getRelationshipsRelationshipParserRuleCall_3_0());
 				}
-				lv_relationships_4_0=ruleRelationship
+				lv_relationships_3_0=ruleRelationship
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getUmlRule());
@@ -123,15 +117,15 @@ ruleUml returns [EObject current=null]
 					add(
 						$current,
 						"relationships",
-						lv_relationships_4_0,
+						lv_relationships_3_0,
 						"lsi.us.es.mis.xtext.MyUmlDsl.Relationship");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_5='}'
+		otherlv_4='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getUmlAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_4, grammarAccess.getUmlAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;
@@ -239,6 +233,25 @@ ruleAttribute returns [EObject current=null]
 						"name",
 						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAttributeAccess().getTypePrimitiveTypeEnumRuleCall_2_0());
+				}
+				lv_type_2_0=rulePrimitiveType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAttributeRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"lsi.us.es.mis.xtext.MyUmlDsl.PrimitiveType");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -432,6 +445,57 @@ ruleMaxValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getMaxValueAccess().getAsteriskKeyword_1());
 		}
+	)
+;
+
+// Rule PrimitiveType
+rulePrimitiveType returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='String'
+			{
+				$current = grammarAccess.getPrimitiveTypeAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getPrimitiveTypeAccess().getSTRINGEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='Integer'
+			{
+				$current = grammarAccess.getPrimitiveTypeAccess().getINTEGEREnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getPrimitiveTypeAccess().getINTEGEREnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='Date'
+			{
+				$current = grammarAccess.getPrimitiveTypeAccess().getDATEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getPrimitiveTypeAccess().getDATEEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='Double'
+			{
+				$current = grammarAccess.getPrimitiveTypeAccess().getDOUBLEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getPrimitiveTypeAccess().getDOUBLEEnumLiteralDeclaration_3());
+			}
+		)
+		    |
+		(
+			enumLiteral_4='Boolean'
+			{
+				$current = grammarAccess.getPrimitiveTypeAccess().getBOOLEANEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getPrimitiveTypeAccess().getBOOLEANEnumLiteralDeclaration_4());
+			}
+		)
 	)
 ;
 

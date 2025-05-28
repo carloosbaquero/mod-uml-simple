@@ -6,6 +6,7 @@ package lsi.us.es.mis.xtext.myUmlDsl.impl;
 import lsi.us.es.mis.xtext.myUmlDsl.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -81,6 +82,40 @@ public class MyUmlDslFactoryImpl extends EFactoryImpl implements MyUmlDslFactory
    * @generated
    */
   @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case MyUmlDslPackage.PRIMITIVE_TYPE:
+        return createPrimitiveTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case MyUmlDslPackage.PRIMITIVE_TYPE:
+        return convertPrimitiveTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Uml createUml()
   {
     UmlImpl uml = new UmlImpl();
@@ -133,6 +168,28 @@ public class MyUmlDslFactoryImpl extends EFactoryImpl implements MyUmlDslFactory
   {
     CardinalityImpl cardinality = new CardinalityImpl();
     return cardinality;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveType createPrimitiveTypeFromString(EDataType eDataType, String initialValue)
+  {
+    PrimitiveType result = PrimitiveType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertPrimitiveTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

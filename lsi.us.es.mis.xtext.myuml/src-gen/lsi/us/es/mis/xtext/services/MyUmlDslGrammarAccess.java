@@ -6,10 +6,11 @@ package lsi.us.es.mis.xtext.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -29,17 +30,15 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cUMLKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Action cUmlAction_2 = (Action)cGroup.eContents().get(2);
-		private final Assignment cEntitiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEntitiesEntityParserRuleCall_3_0 = (RuleCall)cEntitiesAssignment_3.eContents().get(0);
-		private final Assignment cRelationshipsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRelationshipsRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cEntitiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEntitiesEntityParserRuleCall_2_0 = (RuleCall)cEntitiesAssignment_2.eContents().get(0);
+		private final Assignment cRelationshipsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRelationshipsRelationshipParserRuleCall_3_0 = (RuleCall)cRelationshipsAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Uml:
 		//    'UML'
 		//    '{'
-		//        {Uml}
 		//        entities+=Entity*
 		//        relationships+=Relationship*
 		//    '}'
@@ -48,7 +47,6 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//'UML'
 		//'{'
-		//    {Uml}
 		//    entities+=Entity*
 		//    relationships+=Relationship*
 		//'}'
@@ -60,23 +58,20 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//{Uml}
-		public Action getUmlAction_2() { return cUmlAction_2; }
-		
 		//entities+=Entity*
-		public Assignment getEntitiesAssignment_3() { return cEntitiesAssignment_3; }
+		public Assignment getEntitiesAssignment_2() { return cEntitiesAssignment_2; }
 		
 		//Entity
-		public RuleCall getEntitiesEntityParserRuleCall_3_0() { return cEntitiesEntityParserRuleCall_3_0; }
+		public RuleCall getEntitiesEntityParserRuleCall_2_0() { return cEntitiesEntityParserRuleCall_2_0; }
 		
 		//relationships+=Relationship*
-		public Assignment getRelationshipsAssignment_4() { return cRelationshipsAssignment_4; }
+		public Assignment getRelationshipsAssignment_3() { return cRelationshipsAssignment_3; }
 		
 		//Relationship
-		public RuleCall getRelationshipsRelationshipParserRuleCall_4_0() { return cRelationshipsRelationshipParserRuleCall_4_0; }
+		public RuleCall getRelationshipsRelationshipParserRuleCall_3_0() { return cRelationshipsRelationshipParserRuleCall_3_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "lsi.us.es.mis.xtext.MyUmlDsl.Entity");
@@ -130,13 +125,15 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cAttrKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypePrimitiveTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//Attribute:
-		//    'Attr' name=ID
+		//    'Attr' name=ID type=PrimitiveType
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Attr' name=ID
+		//'Attr' name=ID type=PrimitiveType
 		public Group getGroup() { return cGroup; }
 		
 		//'Attr'
@@ -147,6 +144,12 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//type=PrimitiveType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//PrimitiveType
+		public RuleCall getTypePrimitiveTypeEnumRuleCall_2_0() { return cTypePrimitiveTypeEnumRuleCall_2_0; }
 	}
 	public class RelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "lsi.us.es.mis.xtext.MyUmlDsl.Relationship");
@@ -270,10 +273,63 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 	
+	public class PrimitiveTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "lsi.us.es.mis.xtext.MyUmlDsl.PrimitiveType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSTRINGStringKeyword_0_0 = (Keyword)cSTRINGEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cINTEGEREnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cINTEGERIntegerKeyword_1_0 = (Keyword)cINTEGEREnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cDATEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cDATEDateKeyword_2_0 = (Keyword)cDATEEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cDOUBLEDoubleKeyword_3_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cBOOLEANBooleanKeyword_4_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_4.eContents().get(0);
+		
+		//enum PrimitiveType:
+		//    STRING='String' | INTEGER='Integer' | DATE='Date' | DOUBLE='Double' | BOOLEAN='Boolean'
+		//;
+		public EnumRule getRule() { return rule; }
+		
+		//STRING='String' | INTEGER='Integer' | DATE='Date' | DOUBLE='Double' | BOOLEAN='Boolean'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//STRING='String'
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_0() { return cSTRINGEnumLiteralDeclaration_0; }
+		
+		//'String'
+		public Keyword getSTRINGStringKeyword_0_0() { return cSTRINGStringKeyword_0_0; }
+		
+		//INTEGER='Integer'
+		public EnumLiteralDeclaration getINTEGEREnumLiteralDeclaration_1() { return cINTEGEREnumLiteralDeclaration_1; }
+		
+		//'Integer'
+		public Keyword getINTEGERIntegerKeyword_1_0() { return cINTEGERIntegerKeyword_1_0; }
+		
+		//DATE='Date'
+		public EnumLiteralDeclaration getDATEEnumLiteralDeclaration_2() { return cDATEEnumLiteralDeclaration_2; }
+		
+		//'Date'
+		public Keyword getDATEDateKeyword_2_0() { return cDATEDateKeyword_2_0; }
+		
+		//DOUBLE='Double'
+		public EnumLiteralDeclaration getDOUBLEEnumLiteralDeclaration_3() { return cDOUBLEEnumLiteralDeclaration_3; }
+		
+		//'Double'
+		public Keyword getDOUBLEDoubleKeyword_3_0() { return cDOUBLEDoubleKeyword_3_0; }
+		
+		//BOOLEAN='Boolean'
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_4() { return cBOOLEANEnumLiteralDeclaration_4; }
+		
+		//'Boolean'
+		public Keyword getBOOLEANBooleanKeyword_4_0() { return cBOOLEANBooleanKeyword_4_0; }
+	}
 	
 	private final UmlElements pUml;
 	private final EntityElements pEntity;
 	private final AttributeElements pAttribute;
+	private final PrimitiveTypeElements ePrimitiveType;
 	private final RelationshipElements pRelationship;
 	private final CardinalityElements pCardinality;
 	private final MaxValueElements pMaxValue;
@@ -290,6 +346,7 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pUml = new UmlElements();
 		this.pEntity = new EntityElements();
 		this.pAttribute = new AttributeElements();
+		this.ePrimitiveType = new PrimitiveTypeElements();
 		this.pRelationship = new RelationshipElements();
 		this.pCardinality = new CardinalityElements();
 		this.pMaxValue = new MaxValueElements();
@@ -325,7 +382,6 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	//Uml:
 	//    'UML'
 	//    '{'
-	//        {Uml}
 	//        entities+=Entity*
 	//        relationships+=Relationship*
 	//    '}'
@@ -353,7 +409,7 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Attribute:
-	//    'Attr' name=ID
+	//    'Attr' name=ID type=PrimitiveType
 	//;
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
@@ -361,6 +417,17 @@ public class MyUmlDslGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getAttributeRule() {
 		return getAttributeAccess().getRule();
+	}
+	
+	//enum PrimitiveType:
+	//    STRING='String' | INTEGER='Integer' | DATE='Date' | DOUBLE='Double' | BOOLEAN='Boolean'
+	//;
+	public PrimitiveTypeElements getPrimitiveTypeAccess() {
+		return ePrimitiveType;
+	}
+	
+	public EnumRule getPrimitiveTypeRule() {
+		return getPrimitiveTypeAccess().getRule();
 	}
 	
 	//Relationship:

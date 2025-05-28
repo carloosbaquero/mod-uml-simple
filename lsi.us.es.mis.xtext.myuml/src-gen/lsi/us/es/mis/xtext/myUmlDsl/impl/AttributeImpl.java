@@ -5,6 +5,7 @@ package lsi.us.es.mis.xtext.myUmlDsl.impl;
 
 import lsi.us.es.mis.xtext.myUmlDsl.Attribute;
 import lsi.us.es.mis.xtext.myUmlDsl.MyUmlDslPackage;
+import lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link lsi.us.es.mis.xtext.myUmlDsl.impl.AttributeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link lsi.us.es.mis.xtext.myUmlDsl.impl.AttributeImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +49,26 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final PrimitiveType TYPE_EDEFAULT = PrimitiveType.STRING;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected PrimitiveType type = TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -100,12 +122,39 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
+  public PrimitiveType getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(PrimitiveType newType)
+  {
+    PrimitiveType oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyUmlDslPackage.ATTRIBUTE__TYPE, oldType, type));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case MyUmlDslPackage.ATTRIBUTE__NAME:
         return getName();
+      case MyUmlDslPackage.ATTRIBUTE__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -122,6 +171,9 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case MyUmlDslPackage.ATTRIBUTE__NAME:
         setName((String)newValue);
+        return;
+      case MyUmlDslPackage.ATTRIBUTE__TYPE:
+        setType((PrimitiveType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,6 +192,9 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case MyUmlDslPackage.ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MyUmlDslPackage.ATTRIBUTE__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -156,6 +211,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case MyUmlDslPackage.ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyUmlDslPackage.ATTRIBUTE__TYPE:
+        return type != TYPE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -173,6 +230,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", type: ");
+    result.append(type);
     result.append(')');
     return result.toString();
   }

@@ -8,11 +8,13 @@ import lsi.us.es.mis.xtext.myUmlDsl.Cardinality;
 import lsi.us.es.mis.xtext.myUmlDsl.Entity;
 import lsi.us.es.mis.xtext.myUmlDsl.MyUmlDslFactory;
 import lsi.us.es.mis.xtext.myUmlDsl.MyUmlDslPackage;
+import lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType;
 import lsi.us.es.mis.xtext.myUmlDsl.Relationship;
 import lsi.us.es.mis.xtext.myUmlDsl.Uml;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -60,6 +62,13 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
    * @generated
    */
   private EClass cardinalityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum primitiveTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -217,6 +226,17 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
    * @generated
    */
   @Override
+  public EAttribute getAttribute_Type()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getRelationship()
   {
     return relationshipEClass;
@@ -305,6 +325,17 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
    * @generated
    */
   @Override
+  public EEnum getPrimitiveType()
+  {
+    return primitiveTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public MyUmlDslFactory getMyUmlDslFactory()
   {
     return (MyUmlDslFactory)getEFactoryInstance();
@@ -340,6 +371,7 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
+    createEAttribute(attributeEClass, ATTRIBUTE__TYPE);
 
     relationshipEClass = createEClass(RELATIONSHIP);
     createEReference(relationshipEClass, RELATIONSHIP__SOURCE);
@@ -350,6 +382,9 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
     cardinalityEClass = createEClass(CARDINALITY);
     createEAttribute(cardinalityEClass, CARDINALITY__MIN);
     createEAttribute(cardinalityEClass, CARDINALITY__MAX);
+
+    // Create enums
+    primitiveTypeEEnum = createEEnum(PRIMITIVE_TYPE);
   }
 
   /**
@@ -393,6 +428,7 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Type(), this.getPrimitiveType(), "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRelationship_Source(), this.getEntity(), null, "source", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -403,6 +439,14 @@ public class MyUmlDslPackageImpl extends EPackageImpl implements MyUmlDslPackage
     initEClass(cardinalityEClass, Cardinality.class, "Cardinality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCardinality_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCardinality_Max(), ecorePackage.getEString(), "max", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(primitiveTypeEEnum, PrimitiveType.class, "PrimitiveType");
+    addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.STRING);
+    addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.INTEGER);
+    addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.DATE);
+    addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.DOUBLE);
+    addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.BOOLEAN);
 
     // Create resource
     createResource(eNS_URI);

@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import lsi.us.es.mis.xtext.myUmlDsl.Uml
+import lsi.us.es.mis.xtext.myUmlDsl.Entity
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +18,69 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class MyUmlDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		val uml = resource.contents.head as Uml
+		for(entity : uml.entities) {
+			val className = entity.name
+			fsa.generateFile("generated/" + className + ".java", toJavaCode(entity, uml))
+		}
+	}
+	
+	def toJavaCode(Entity entity, Uml uml) '''
+		package generated;
+		
+		«FOR imp : getImports(entity, uml)»
+		import generated.«imp»;
+		«ENDFOR»
+		import java.util.List;
+		import java.util.ArrayList;
+		
+		/**
+		 * Auto-generated class for entity «entity.name»
+		 */
+		public class «entity.name» {
+		
+		    // Attributes
+		«FOR attr : entity.attributes»
+		    private «attr.type» «attr.name»;
+		«ENDFOR»
+		
+		    // Relationships
+		«FOR rel : getOutgoingRelationships(entity, uml)»
+		    private List<«rel.target.name»> «rel.role» = new ArrayList<>();
+		«ENDFOR»
+		
+		    // Getters and setters for attributes
+		«FOR attr : entity.attributes»
+		    public «attr.type» get«attr.name.toFirstUpper»() {
+		        return «attr.name»;
+		    }
+		    public void set«attr.name.toFirstUpper»(«attr.type» «attr.name») {
+		        this.«attr.name» = «attr.name»;
+		    }
+		«ENDFOR»
+		
+		    // Getters and setters for relationships
+		«FOR rel : getOutgoingRelationships(entity, uml)»
+		    public List<«rel.target.name»> get«rel.role.toFirstUpper»() {
+		        return «rel.role»;
+		    }
+		    public void set«rel.role.toFirstUpper»(List<«rel.target.name»> «rel.role») {
+		        this.«rel.role» = «rel.role»;
+		    }
+		«ENDFOR»
+		}
+	'''
+
+	// Obtiene relaciones
+	def getOutgoingRelationships(Entity entity, Uml uml) {
+		uml.relationships.filter[ source.name == entity.name ]
+	}
+	
+	// Calcula imports
+	def getImports(Entity entity, Uml uml) {
+		val rels = getOutgoingRelationships(entity, uml)
+		val targets = rels.map[r | r.target.name].toSet
+		targets.remove(entity.name)
+		return targets.toList.sort
 	}
 }

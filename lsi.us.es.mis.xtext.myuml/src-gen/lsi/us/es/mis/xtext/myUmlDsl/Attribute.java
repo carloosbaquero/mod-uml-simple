@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link lsi.us.es.mis.xtext.myUmlDsl.Attribute#getName <em>Name</em>}</li>
+ *   <li>{@link lsi.us.es.mis.xtext.myUmlDsl.Attribute#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see lsi.us.es.mis.xtext.myUmlDsl.MyUmlDslPackage#getAttribute()
@@ -44,5 +45,30 @@ public interface Attribute extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' attribute.
+   * @see lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType
+   * @see #setType(PrimitiveType)
+   * @see lsi.us.es.mis.xtext.myUmlDsl.MyUmlDslPackage#getAttribute_Type()
+   * @model
+   * @generated
+   */
+  PrimitiveType getType();
+
+  /**
+   * Sets the value of the '{@link lsi.us.es.mis.xtext.myUmlDsl.Attribute#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType
+   * @see #getType()
+   * @generated
+   */
+  void setType(PrimitiveType value);
 
 } // Attribute

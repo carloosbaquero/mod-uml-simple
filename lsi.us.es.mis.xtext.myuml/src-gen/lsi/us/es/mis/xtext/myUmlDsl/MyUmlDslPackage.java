@@ -5,6 +5,7 @@ package lsi.us.es.mis.xtext.myUmlDsl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -151,13 +152,22 @@ public interface MyUmlDslPackage extends EPackage
   int ATTRIBUTE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__TYPE = 1;
+
+  /**
    * The number of structural features of the '<em>Attribute</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 1;
+  int ATTRIBUTE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link lsi.us.es.mis.xtext.myUmlDsl.impl.RelationshipImpl <em>Relationship</em>}' class.
@@ -251,6 +261,16 @@ public interface MyUmlDslPackage extends EPackage
    */
   int CARDINALITY_FEATURE_COUNT = 2;
 
+  /**
+   * The meta object id for the '{@link lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType <em>Primitive Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType
+   * @see lsi.us.es.mis.xtext.myUmlDsl.impl.MyUmlDslPackageImpl#getPrimitiveType()
+   * @generated
+   */
+  int PRIMITIVE_TYPE = 5;
+
 
   /**
    * Returns the meta object for class '{@link lsi.us.es.mis.xtext.myUmlDsl.Uml <em>Uml</em>}'.
@@ -338,6 +358,17 @@ public interface MyUmlDslPackage extends EPackage
   EAttribute getAttribute_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link lsi.us.es.mis.xtext.myUmlDsl.Attribute#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see lsi.us.es.mis.xtext.myUmlDsl.Attribute#getType()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Type();
+
+  /**
    * Returns the meta object for class '{@link lsi.us.es.mis.xtext.myUmlDsl.Relationship <em>Relationship</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -422,6 +453,16 @@ public interface MyUmlDslPackage extends EPackage
    * @generated
    */
   EAttribute getCardinality_Max();
+
+  /**
+   * Returns the meta object for enum '{@link lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType <em>Primitive Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Primitive Type</em>'.
+   * @see lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType
+   * @generated
+   */
+  EEnum getPrimitiveType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -517,6 +558,14 @@ public interface MyUmlDslPackage extends EPackage
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
+
+    /**
      * The meta object literal for the '{@link lsi.us.es.mis.xtext.myUmlDsl.impl.RelationshipImpl <em>Relationship</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -583,6 +632,16 @@ public interface MyUmlDslPackage extends EPackage
      * @generated
      */
     EAttribute CARDINALITY__MAX = eINSTANCE.getCardinality_Max();
+
+    /**
+     * The meta object literal for the '{@link lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType <em>Primitive Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType
+     * @see lsi.us.es.mis.xtext.myUmlDsl.impl.MyUmlDslPackageImpl#getPrimitiveType()
+     * @generated
+     */
+    EEnum PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
 
   }
 

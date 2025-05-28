@@ -3,10 +3,24 @@
  */
 package lsi.us.es.mis.xtext.generator;
 
+import com.google.common.base.Objects;
+import java.util.List;
+import java.util.Set;
+import lsi.us.es.mis.xtext.myUmlDsl.Attribute;
+import lsi.us.es.mis.xtext.myUmlDsl.Entity;
+import lsi.us.es.mis.xtext.myUmlDsl.PrimitiveType;
+import lsi.us.es.mis.xtext.myUmlDsl.Relationship;
+import lsi.us.es.mis.xtext.myUmlDsl.Uml;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +31,200 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class MyUmlDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+    final Uml uml = ((Uml) _head);
+    EList<Entity> _entities = uml.getEntities();
+    for (final Entity entity : _entities) {
+      {
+        final String className = entity.getName();
+        fsa.generateFile((("generated/" + className) + ".java"), this.toJavaCode(entity, uml));
+      }
+    }
+  }
+
+  public CharSequence toJavaCode(final Entity entity, final Uml uml) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package generated;");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      List<String> _imports = this.getImports(entity, uml);
+      for(final String imp : _imports) {
+        _builder.append("import generated.");
+        _builder.append(imp);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("import java.util.List;");
+    _builder.newLine();
+    _builder.append("import java.util.ArrayList;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Auto-generated class for entity ");
+    String _name = entity.getName();
+    _builder.append(_name, " ");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name_1 = entity.getName();
+    _builder.append(_name_1);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("// Attributes");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes = entity.getAttributes();
+      for(final Attribute attr : _attributes) {
+        _builder.append("private ");
+        PrimitiveType _type = attr.getType();
+        _builder.append(_type);
+        _builder.append(" ");
+        String _name_2 = attr.getName();
+        _builder.append(_name_2);
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("// Relationships");
+    _builder.newLine();
+    {
+      Iterable<Relationship> _outgoingRelationships = this.getOutgoingRelationships(entity, uml);
+      for(final Relationship rel : _outgoingRelationships) {
+        _builder.append("private List<");
+        String _name_3 = rel.getTarget().getName();
+        _builder.append(_name_3);
+        _builder.append("> ");
+        String _role = rel.getRole();
+        _builder.append(_role);
+        _builder.append(" = new ArrayList<>();");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("// Getters and setters for attributes");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_1 = entity.getAttributes();
+      for(final Attribute attr_1 : _attributes_1) {
+        _builder.append("public ");
+        PrimitiveType _type_1 = attr_1.getType();
+        _builder.append(_type_1);
+        _builder.append(" get");
+        String _firstUpper = StringExtensions.toFirstUpper(attr_1.getName());
+        _builder.append(_firstUpper);
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("return ");
+        String _name_4 = attr_1.getName();
+        _builder.append(_name_4, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("public void set");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(attr_1.getName());
+        _builder.append(_firstUpper_1);
+        _builder.append("(");
+        PrimitiveType _type_2 = attr_1.getType();
+        _builder.append(_type_2);
+        _builder.append(" ");
+        String _name_5 = attr_1.getName();
+        _builder.append(_name_5);
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("this.");
+        String _name_6 = attr_1.getName();
+        _builder.append(_name_6, "    ");
+        _builder.append(" = ");
+        String _name_7 = attr_1.getName();
+        _builder.append(_name_7, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("// Getters and setters for relationships");
+    _builder.newLine();
+    {
+      Iterable<Relationship> _outgoingRelationships_1 = this.getOutgoingRelationships(entity, uml);
+      for(final Relationship rel_1 : _outgoingRelationships_1) {
+        _builder.append("public List<");
+        String _name_8 = rel_1.getTarget().getName();
+        _builder.append(_name_8);
+        _builder.append("> get");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(rel_1.getRole());
+        _builder.append(_firstUpper_2);
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("return ");
+        String _role_1 = rel_1.getRole();
+        _builder.append(_role_1, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("public void set");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(rel_1.getRole());
+        _builder.append(_firstUpper_3);
+        _builder.append("(List<");
+        String _name_9 = rel_1.getTarget().getName();
+        _builder.append(_name_9);
+        _builder.append("> ");
+        String _role_2 = rel_1.getRole();
+        _builder.append(_role_2);
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("this.");
+        String _role_3 = rel_1.getRole();
+        _builder.append(_role_3, "    ");
+        _builder.append(" = ");
+        String _role_4 = rel_1.getRole();
+        _builder.append(_role_4, "    ");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+
+  public Iterable<Relationship> getOutgoingRelationships(final Entity entity, final Uml uml) {
+    final Function1<Relationship, Boolean> _function = (Relationship it) -> {
+      String _name = it.getSource().getName();
+      String _name_1 = entity.getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    return IterableExtensions.<Relationship>filter(uml.getRelationships(), _function);
+  }
+
+  public List<String> getImports(final Entity entity, final Uml uml) {
+    final Iterable<Relationship> rels = this.getOutgoingRelationships(entity, uml);
+    final Function1<Relationship, String> _function = (Relationship r) -> {
+      return r.getTarget().getName();
+    };
+    final Set<String> targets = IterableExtensions.<String>toSet(IterableExtensions.<Relationship, String>map(rels, _function));
+    targets.remove(entity.getName());
+    return IterableExtensions.<String>sort(IterableExtensions.<String>toList(targets));
   }
 }

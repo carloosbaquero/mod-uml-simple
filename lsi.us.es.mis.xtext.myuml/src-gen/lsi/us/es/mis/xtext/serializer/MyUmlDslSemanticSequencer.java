@@ -62,16 +62,19 @@ public class MyUmlDslSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID type=PrimitiveType)
 	 * </pre>
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MyUmlDslPackage.Literals.ATTRIBUTE__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyUmlDslPackage.Literals.ATTRIBUTE__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyUmlDslPackage.Literals.ATTRIBUTE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyUmlDslPackage.Literals.ATTRIBUTE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAttributeAccess().getTypePrimitiveTypeEnumRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -148,7 +151,7 @@ public class MyUmlDslSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Uml returns Uml
 	 *
 	 * Constraint:
-	 *     (entities+=Entity* relationships+=Relationship*)
+	 *     ((entities+=Entity+ relationships+=Relationship+) | relationships+=Relationship+)?
 	 * </pre>
 	 */
 	protected void sequence_Uml(ISerializationContext context, Uml semanticObject) {

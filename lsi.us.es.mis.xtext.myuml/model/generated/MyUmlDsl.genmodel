@@ -6,6 +6,13 @@
     complianceLevel="11.0" copyrightFields="false" runtimeVersion="2.29">
   <genPackages prefix="MyUmlDsl" basePackage="lsi.us.es.mis.xtext" disposableProviderFactory="true"
       fileExtensions="myuml" ecorePackage="MyUmlDsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MyUmlDsl.ecore#//PrimitiveType">
+      <genEnumLiterals ecoreEnumLiteral="MyUmlDsl.ecore#//PrimitiveType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="MyUmlDsl.ecore#//PrimitiveType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="MyUmlDsl.ecore#//PrimitiveType/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="MyUmlDsl.ecore#//PrimitiveType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="MyUmlDsl.ecore#//PrimitiveType/BOOLEAN"/>
+    </genEnums>
     <genClasses ecoreClass="MyUmlDsl.ecore#//Uml">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyUmlDsl.ecore#//Uml/entities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyUmlDsl.ecore#//Uml/relationships"/>
@@ -16,6 +23,7 @@
     </genClasses>
     <genClasses ecoreClass="MyUmlDsl.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyUmlDsl.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyUmlDsl.ecore#//Attribute/type"/>
     </genClasses>
     <genClasses ecoreClass="MyUmlDsl.ecore#//Relationship">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyUmlDsl.ecore#//Relationship/source"/>

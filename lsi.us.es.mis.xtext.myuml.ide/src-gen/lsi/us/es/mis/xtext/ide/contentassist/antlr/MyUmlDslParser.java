@@ -32,16 +32,18 @@ public class MyUmlDslParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyUmlDslGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getMaxValueAccess().getAlternatives(), "rule__MaxValue__Alternatives");
+			builder.put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
 			builder.put(grammarAccess.getUmlAccess().getGroup(), "rule__Uml__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
 			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
 			builder.put(grammarAccess.getRelationshipAccess().getGroup(), "rule__Relationship__Group__0");
 			builder.put(grammarAccess.getCardinalityAccess().getGroup(), "rule__Cardinality__Group__0");
-			builder.put(grammarAccess.getUmlAccess().getEntitiesAssignment_3(), "rule__Uml__EntitiesAssignment_3");
-			builder.put(grammarAccess.getUmlAccess().getRelationshipsAssignment_4(), "rule__Uml__RelationshipsAssignment_4");
+			builder.put(grammarAccess.getUmlAccess().getEntitiesAssignment_2(), "rule__Uml__EntitiesAssignment_2");
+			builder.put(grammarAccess.getUmlAccess().getRelationshipsAssignment_3(), "rule__Uml__RelationshipsAssignment_3");
 			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
 			builder.put(grammarAccess.getEntityAccess().getAttributesAssignment_3(), "rule__Entity__AttributesAssignment_3");
 			builder.put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
+			builder.put(grammarAccess.getAttributeAccess().getTypeAssignment_2(), "rule__Attribute__TypeAssignment_2");
 			builder.put(grammarAccess.getRelationshipAccess().getSourceAssignment_0(), "rule__Relationship__SourceAssignment_0");
 			builder.put(grammarAccess.getRelationshipAccess().getTargetAssignment_2(), "rule__Relationship__TargetAssignment_2");
 			builder.put(grammarAccess.getRelationshipAccess().getRoleAssignment_4(), "rule__Relationship__RoleAssignment_4");

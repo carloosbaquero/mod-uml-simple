@@ -5,7 +5,6 @@ generate myUmlDsl "http://www.us.lsi/es/mis/xtext/MyUmlDsl"
 Uml:
 	'UML'
 	'{'
-		{Uml}
 		entities+=Entity*
     	relationships+=Relationship*
 	'}'
@@ -19,7 +18,11 @@ Entity:
 ;
 
 Attribute:
-    'Attr' name=ID
+    'Attr' name=ID type=PrimitiveType
+;
+
+enum PrimitiveType:
+    STRING='String' | INTEGER='Integer' | DATE='Date' | DOUBLE='Double' | BOOLEAN='Boolean'
 ;
 
 Relationship:
